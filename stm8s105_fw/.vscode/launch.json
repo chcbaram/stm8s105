@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "type": "stm8-debug",
+          "request": "launch",
+          "name": "Launch Program",
+          "serverType": "stm8-sdcc",
+          "executable": ".\\build\\stm8s105_fw.elf.ihx",
+          "openOcdConfigs": [
+              "interface/stlink-v3.cfg",
+              "target/stm8s105.cfg"
+          ]
+      }
+  ]
+}

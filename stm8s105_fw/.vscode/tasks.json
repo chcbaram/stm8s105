@@ -1,0 +1,23 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build fw",
+      "type": "shell",
+      "command": "cmake --build build -j16"
+    },
+    {
+      "label": "down fw",
+      "type": "shell",
+      "command": "./tools/stm8flash.exe -c stlinkv2 -p stm8s105?4 -s flash -w ./build/stm8s105_fw.elf.ihx;"
+    },
+    {
+      "label": "unlock fw",
+      "type": "shell",
+      //"command": "./tools/stm8flash.exe -c stlinkv2 -p stm8s105?4 -s opt -w ./tools/optdefault.bin"
+      "command": "./tools/stm8flash.exe -c stlinkv2 -p stm8s105?4 -u"
+    }         
+  ]
+}
