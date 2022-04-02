@@ -7,29 +7,25 @@
 
 typedef struct  
 {
-  uint8_t  *dir_port;
-  uint8_t  *out_port;
+  PORT_t  *port;
   uint8_t  pin_num;
   uint8_t  on_state;
 } led_pin_t;
 
 static const led_pin_t pin_tbl[LED_MAX_CH] = 
 {
-  {&PE_DDR, &PE_ODR, 5, _DEF_LOW}
+  {&sfr_PORTE, 5, _DEF_LOW}
 };
 
-static const uint32_t test[1024];
+
 
 
 bool ledInit(void)
 {
-  PE_DDR |= (1 << 5);    
-  PE_CR1 |= (1 << 5);
-
-
   for (int i=0; i<LED_MAX_CH; i++)
   {
-
+    pin_tbl[i].port->DDR.byte |= (1<<pin_tbl[i].pin_num);
+    pin_tbl[i].port->CR1.byte |= (1<<pin_tbl[i].pin_num);
   }
 
   return true;
@@ -37,32 +33,37 @@ bool ledInit(void)
 
 void ledOn(uint8_t ch)
 {
+  PORT_t *port = pin_tbl[ch].port;
+
   if (pin_tbl[ch].on_state == _DEF_HIGH)
   {
-    PE_ODR |= (1<<5);
+    port->ODR.byte |= (1<<pin_tbl[ch].pin_num);    
   }
   else
   {    
-    PE_ODR &= ~(1<<5);
+    port->ODR.byte &= ~(1<<pin_tbl[ch].pin_num);    
   }
 }
 
 void ledOff(uint8_t ch)
 {
+  PORT_t *port = pin_tbl[ch].port;
+
   if (pin_tbl[ch].on_state == _DEF_HIGH)
   {
-    PE_ODR &= ~(1<<5);
+    port->ODR.byte &= ~(1<<pin_tbl[ch].pin_num);    
   }
   else
   {    
-    PE_ODR |= (1<<5);
+    port->ODR.byte |= (1<<pin_tbl[ch].pin_num);  
   }
 }
 
 void ledToggle(uint8_t ch)
 {
-  //PE_ODR ^= (1<<5);
-  sfr_PORTE.ODR.byte ^= (1<<5);
+  PORT_t *port = pin_tbl[ch].port;
+
+  port->ODR.byte ^= (1<<pin_tbl[ch].pin_num);  
 }
 
 #endif

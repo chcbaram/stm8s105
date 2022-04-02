@@ -14,7 +14,7 @@ bool bspInit(void)
 void delay(uint32_t ms)
 {
   while (ms--)
-      nop();
+      NOP();
 }
 #else
 void delay(uint32_t ms)
