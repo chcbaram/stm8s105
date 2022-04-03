@@ -24,8 +24,8 @@ bool ledInit(void)
 {
   for (int i=0; i<LED_MAX_CH; i++)
   {
-    pin_tbl[i].port->DDR.byte |= (1<<pin_tbl[i].pin_num);
-    pin_tbl[i].port->CR1.byte |= (1<<pin_tbl[i].pin_num);
+    pin_tbl[i].port->DDR.byte |= (1<<pin_tbl[i].pin_num); // Output
+    pin_tbl[i].port->CR1.byte |= (1<<pin_tbl[i].pin_num); // Push-pull
   }
 
   return true;
