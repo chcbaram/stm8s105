@@ -625,7 +625,7 @@ float cliArgsGetFloat(uint8_t index)
   }
 
   //ret = (float)strtof((const char * ) p_cli->cmd_args.argv[index], (char **)NULL);
-  ret = 0;
+  //ret = (float)atof((const char * ) p_cli->cmd_args.argv[index]);
 
   return ret;
 }
