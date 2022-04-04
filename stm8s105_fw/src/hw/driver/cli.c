@@ -530,7 +530,7 @@ bool cliParseArgs(cli_t *p_cli)
   char *tok;
   //char *next_ptr;
   uint16_t argc = 0;
-  static const char *delim = " \f\n\r\t\v";
+  const char *delim = " \f\n\r\t\v";
   char *cmdline;
   char **argv;
 
@@ -545,7 +545,7 @@ bool cliParseArgs(cli_t *p_cli)
   {
     argv[argc++] = tok;
   }
-
+  
   p_cli->argc = argc;
 
   if (argc > 0)

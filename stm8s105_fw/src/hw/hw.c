@@ -16,9 +16,9 @@ bool hwInit(void)
 
 
   logPrintf("\n");
-  logPrintf("[ Firmware Begin... ]\r\n");
-  logPrintf("Booting..Name \t\t: %s\r\n", _DEF_BOARD_NAME);
-  logPrintf("Booting..Ver  \t\t: %s\r\n", _DEF_FIRMWATRE_VERSION);
+  logPrintf("[ Firmware Begin... ]\n");
+  logPrintf("Booting..Name \t\t: %s\n", _DEF_BOARD_NAME);
+  logPrintf("Booting..Ver  \t\t: %s\n", _DEF_FIRMWATRE_VERSION);
   return true;
 }
 
