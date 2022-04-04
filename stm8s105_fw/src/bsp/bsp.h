@@ -23,6 +23,8 @@ void logPrintf(const char *fmt, ...);
 
 
 ISR_HANDLER(TIM4_ISR, _TIM4_OVR_UIF_VECTOR_);
+ISR_HANDLER(UART2_RXD, _UART2_R_RXNE_VECTOR_);
+
 
 #ifdef __cplusplus
 }

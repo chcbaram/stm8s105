@@ -2,6 +2,8 @@
 
 
 
+extern int32_t  uartWrite(uint8_t ch, uint8_t *p_data, uint32_t length);
+
 static volatile uint32_t timer_tick = 0;
 
 
@@ -24,7 +26,6 @@ bool bspInit(void)
   //
   sfr_CLK.CKDIVR.HSIDIV = 0; // HSI 16Mhz / 1 = 16Mhz
   while(sfr_CLK.ICKR.HSIRDY != 1);
-
 
   //-- 1ms Timer
   //   16Mhz/64 * 250 = 1000us
@@ -75,7 +76,6 @@ uint32_t millis(void)
   return ret;
 }
 
-#if 0
 void logPrintf(const char *fmt, ...)
 {
   va_list arg;
@@ -84,12 +84,11 @@ void logPrintf(const char *fmt, ...)
   char print_buffer[128];
 
 
-  len = vsnprintf(print_buffer, 128, fmt, arg);
+  len = vsprintf(print_buffer, fmt, arg);
   va_end (arg);
 
   uartWrite(_DEF_UART1, (uint8_t *)print_buffer, len);
 }
-#endif
 
 void assert_failed(uint8_t* file, uint32_t line)
 {
